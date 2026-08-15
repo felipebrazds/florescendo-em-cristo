@@ -1,0 +1,207 @@
+/* Design tokens — mesma paleta/tipografia do protótipo original. Mantidos
+   como custom properties para reaproveitar entre páginas públicas e admin. */
+:root {
+  --color-bg: #faf7f2;
+  --color-bg-alt: #f4eee4;
+  --color-ink: #4a2e20;
+  --color-ink-soft: #6b5140;
+  --color-body: #54382a;
+  --color-muted: #8b7663;
+  --color-caption: #9a8570;
+  --color-accent: #8b5e34;
+  --color-accent-2: #b89258;
+  --color-gold: #e8b84e;
+  --color-gold-hover: #f6d77a;
+  --color-line: rgba(139, 94, 52, 0.14);
+  --color-line-strong: rgba(139, 94, 52, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: "Lora", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-ink);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Botões / cards com hover real (no protótipo original o atributo
+   style-hover nunca chegou a funcionar). */
+.btn-dark {
+  background: var(--color-ink);
+  transition: background 0.2s ease;
+}
+.btn-dark:hover {
+  background: var(--color-accent);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  transition: background 0.2s ease;
+}
+.btn-gold:hover {
+  background: var(--color-gold-hover);
+}
+
+.card-cat {
+  background: var(--color-bg);
+  transition: background 0.2s ease;
+}
+.card-cat:hover {
+  background: var(--color-bg-alt);
+}
+
+.photo-placeholder {
+  position: relative;
+  background: repeating-linear-gradient(
+    135deg,
+    #f1eade 0px,
+    #f1eade 9px,
+    #ebe1d2 9px,
+    #ebe1d2 18px
+  );
+  display: flex;
+  align-items: flex-end;
+}
+
+.photo-placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder span {
+  position: relative;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--color-caption);
+  background: rgba(250, 247, 242, 0.85);
+  padding: 7px 12px;
+}
+
+/* Corpo de um post (renderizado a partir do HTML salvo pelo editor). Mantém
+   a leitura idêntica ao protótipo: parágrafos, citações e títulos. */
+.post-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--color-body);
+}
+
+.post-body p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.post-body > p:first-of-type::first-letter {
+  float: left;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 76px;
+  line-height: 0.78;
+  padding: 6px 14px 0 0;
+  color: var(--color-accent);
+}
+
+.post-body h2 {
+  margin: 18px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.post-body h3 {
+  margin: 10px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.post-body blockquote {
+  margin: 14px 0;
+  padding: 34px 40px;
+  background: var(--color-bg-alt);
+  border-left: 2px solid var(--color-gold);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-body blockquote p {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.post-body blockquote cite {
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+
+.post-body ul,
+.post-body ol {
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.post-body a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-strong);
+}
+
+/* Formulários da área /admin — mesma linguagem visual do site público. */
+.admin-input,
+.admin-textarea,
+.admin-select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  color: var(--color-ink);
+  font-family: "Lora", Georgia, serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+  border-color: var(--color-accent);
+}
+
+.admin-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
