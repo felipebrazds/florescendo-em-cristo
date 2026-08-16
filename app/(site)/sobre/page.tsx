@@ -95,7 +95,7 @@ export default function SobrePage() {
 
       <NewsletterSection
         heading="Vamos caminhar juntas?"
-        subtext="Toda quinta-feira envio um devocional curto, um versículo para guardar e uma oração."
+        subtext="Toda quinta-feira envio uma palavra curta, um versículo para guardar e uma oração."
       />
     </>
   );

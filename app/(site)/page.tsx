@@ -169,7 +169,7 @@ export default async function HomePage() {
 
       <NewsletterSection
         heading="Uma palavra de cuidado, toda quinta-feira"
-        subtext="Um devocional curto, um versículo para guardar e uma oração. Sem pressa, sem cobrança."
+        subtext="Uma palavra curta, um versículo para guardar e uma oração. Sem pressa, sem cobrança."
       />
     </>
   );

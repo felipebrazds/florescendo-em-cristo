@@ -98,7 +98,7 @@ export function RichTextEditor({
     extensions: [
       StarterKit,
       Link.configure({ openOnClick: false }),
-      Placeholder.configure({ placeholder: "Escreva o devocional aqui…" }),
+      Placeholder.configure({ placeholder: "Escreva o texto aqui…" }),
     ],
     content: defaultValue ?? "",
     onUpdate: ({ editor }) => {

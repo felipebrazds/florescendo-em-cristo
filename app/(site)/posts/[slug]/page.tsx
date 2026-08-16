@@ -127,7 +127,7 @@ export default async function PostPage({
         </div>
       )}
 
-      <NewsletterSection heading="Receba um devocional toda quinta-feira" padding={80} headingSize={40} />
+      <NewsletterSection heading="Receba uma palavra toda quinta-feira" padding={80} headingSize={40} />
     </>
   );
 }

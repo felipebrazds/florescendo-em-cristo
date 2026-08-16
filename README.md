@@ -1,6 +1,6 @@
 # Florescendo em Cristo
 
-Blog devocional da Bruna Figueiredo. Next.js (App Router) + Supabase
+Blog da Bruna Figueiredo. Next.js (App Router) + Supabase
 (banco, autenticação e armazenamento de imagens), pronto para deploy na
 Vercel.
 
