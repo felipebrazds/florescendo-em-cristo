@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export function CoverImageUploader({
@@ -12,7 +12,6 @@ export function CoverImageUploader({
 }) {
   const [preview, setPreview] = useState<string | null>(defaultValue ?? null);
   const [status, setStatus] = useState<"idle" | "uploading" | "error">("idle");
-  const hiddenInputRef = useRef<HTMLInputElement>(null);
 
   async function handleFile(file: File) {
     setStatus("uploading");
@@ -32,13 +31,16 @@ export function CoverImageUploader({
 
     const { data } = supabase.storage.from("post-covers").getPublicUrl(path);
     setPreview(data.publicUrl);
-    if (hiddenInputRef.current) hiddenInputRef.current.value = data.publicUrl;
     setStatus("idle");
   }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-      <input ref={hiddenInputRef} type="hidden" name={name} defaultValue={defaultValue ?? ""} />
+      {/* Campo controlado por estado do React (não por ref) — um input não
+          controlado ("defaultValue" + mutação manual via ref) perde o valor
+          no próximo re-render deste componente, porque o próprio upload
+          dispara esse re-render logo em seguida. */}
+      <input type="hidden" name={name} value={preview ?? ""} readOnly />
       {preview ? (
         <div className="photo-placeholder" style={{ aspectRatio: "16/9", padding: 0 }}>
           <img src={preview} alt="Capa do post" />
@@ -61,10 +63,7 @@ export function CoverImageUploader({
       {preview ? (
         <button
           type="button"
-          onClick={() => {
-            setPreview(null);
-            if (hiddenInputRef.current) hiddenInputRef.current.value = "";
-          }}
+          onClick={() => setPreview(null)}
           style={{ alignSelf: "flex-start", background: "none", border: "none", textDecoration: "underline", cursor: "pointer", fontSize: 13, color: "var(--color-accent)", padding: 0 }}
         >
           Remover capa

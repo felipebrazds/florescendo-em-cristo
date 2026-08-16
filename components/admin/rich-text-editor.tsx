@@ -4,7 +4,7 @@ import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 
 function ToolbarButton({
   onClick,
@@ -91,7 +91,13 @@ export function RichTextEditor({
   name: string;
   defaultValue?: string;
 }) {
-  const hiddenInputRef = useRef<HTMLInputElement>(null);
+  // Campo controlado por estado do React, não por ref: um hidden input
+  // "não controlado" (defaultValue + mutação manual via ref) perde o valor
+  // no próximo re-render — e o @tiptap/react força um re-render deste
+  // componente a cada tecla digitada (é assim que a toolbar sabe quando
+  // "negrito" está ativo). O valor imperativo era revertido de volta ao
+  // defaultValue antes mesmo do form ser salvo.
+  const [html, setHtml] = useState(defaultValue ?? "");
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -102,23 +108,13 @@ export function RichTextEditor({
     ],
     content: defaultValue ?? "",
     onUpdate: ({ editor }) => {
-      if (hiddenInputRef.current) {
-        hiddenInputRef.current.value = editor.getHTML();
-      }
+      setHtml(editor.getHTML());
     },
   });
 
-  // mantém o hidden input sincronizado mesmo se o form for lido antes de
-  // qualquer edição (ex.: salvar sem mexer no texto).
-  useEffect(() => {
-    if (editor && hiddenInputRef.current) {
-      hiddenInputRef.current.value = editor.getHTML();
-    }
-  }, [editor]);
-
   return (
     <div>
-      <input ref={hiddenInputRef} type="hidden" name={name} defaultValue={defaultValue ?? ""} />
+      <input type="hidden" name={name} value={html} readOnly />
       {editor ? <Toolbar editor={editor} /> : null}
       <div className="post-body" style={{ minHeight: 320, padding: "4px 2px" }}>
         <EditorContent editor={editor} />
