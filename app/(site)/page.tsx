@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getPublishedPosts, getCategories } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
 import { NewsletterSection } from "@/components/newsletter-section";
@@ -62,8 +63,15 @@ export default async function HomePage() {
             </a>
           </div>
         </div>
-        <div className="photo-placeholder" style={{ justifyContent: "center", padding: 24, minHeight: 420 }}>
-          <span>foto — lírios brancos, luz suave (vertical)</span>
+        <div className="photo-placeholder" style={{ minHeight: 420 }}>
+          <Image
+            src="/images/lirios-1.jpg"
+            alt="Lírios brancos com luz suave"
+            fill
+            priority
+            sizes="(max-width: 900px) 100vw, 50vw"
+            style={{ objectFit: "cover" }}
+          />
         </div>
       </section>
 
@@ -113,7 +121,7 @@ export default async function HomePage() {
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(5,1fr)",
+          gridTemplateColumns: `repeat(${Math.max(categories.length, 1)},1fr)`,
           gap: 1,
           background: "var(--color-line-strong)",
           borderTop: "1px solid var(--color-line-strong)",
@@ -134,8 +142,14 @@ export default async function HomePage() {
       </section>
 
       <section style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 0, alignItems: "stretch" }}>
-        <div className="photo-placeholder" style={{ padding: 20, minHeight: 440 }}>
-          <span>foto — retrato ou mãos com bíblia</span>
+        <div className="photo-placeholder" style={{ minHeight: 440 }}>
+          <Image
+            src="/images/maos-biblia-1.png"
+            alt="Mãos em oração sobre a Bíblia"
+            fill
+            sizes="(max-width: 900px) 100vw, 55vw"
+            style={{ objectFit: "cover" }}
+          />
         </div>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 24, padding: "80px 6vw" }}>
           <span style={{ fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--color-accent-2)" }}>
