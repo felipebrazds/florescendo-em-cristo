@@ -97,7 +97,7 @@ export default async function PostPage({
             <span style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--color-accent-2)" }}>Escrito por</span>
             <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 26, color: "var(--color-ink)" }}>Bruna Figueiredo</span>
             <p style={{ margin: 0, maxWidth: "60ch", fontSize: 15, lineHeight: 1.7, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
-              Esposa, mãe de 3 e escritora. Escreve sobre a fé no dia comum — a louça, a espera e a graça que sustenta as duas.
+              Esposa, mãe de 3 e escritora. Escreve sobre a fé no dia comum — entre o serviço do lar e a busca pela santificação, a graça que sustenta os dois.
             </p>
           </div>
         </div>

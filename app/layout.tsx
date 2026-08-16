@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Florescendo em Cristo",
   description:
-    "Devocionais, estudos e histórias reais para mulheres que caminham com Cristo no meio da rotina, da casa e das lutas silenciosas.",
+    "Estudos, testemunhos e histórias reais para mulheres e mães, católicas ou cristãs, que carregam suas cruzes diárias sem desistir.",
 };
 
 export default function RootLayout({

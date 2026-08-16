@@ -26,7 +26,7 @@ export default function SobrePage() {
             Esposa, mãe de 3 e escritora. Escrevo sobre a fé no dia comum — entre o serviço do lar e a busca pela santificação, a graça que sustenta os dois.
           </p>
           <p style={{ margin: 0, maxWidth: "46ch", fontSize: 16, lineHeight: 1.8, color: "var(--color-muted)", textWrap: "pretty" }}>
-            O Florescendo em Cristo nasceu de anotações no caderno da cozinha, em madrugadas de casa cheia e coração inquieto. Hoje é o lugar onde compartilho o que Deus tem me ensinado, sem pressa e sem fórmula.
+            O Florescendo em Cristo nasceu de um diário de evolução espiritual — frases pequenas, escritas só para mim, que sem eu perceber começaram a tocar quem estava por perto. Hoje é o lugar onde compartilho o que Deus tem me ensinado, sem pressa e sem fórmula.
           </p>
         </div>
         <div className="photo-placeholder" style={{ justifyContent: "center", padding: 24, minHeight: 520 }}>
@@ -50,16 +50,16 @@ export default function SobrePage() {
             Como tudo começou
           </h2>
           <p style={{ margin: 0, textWrap: "pretty" }}>
-            Durante muitos anos eu achei que precisava estar inteira para servir a Deus. Que primeiro vinha a organização, o tempo sobrando, o silêncio da casa — e só depois a oração. Descobri o contrário: é no meio do barulho que a fé cresce.
+            Comecei escrevendo um diário de evolução espiritual — só para mim, nos dias difíceis e nos dias de graça. Não era plano nem projeto: eram frases pequenas, quase despretensiosas. Aos poucos percebi que aquelas mesmas frases, quando compartilhadas, tocavam quem estava por perto.
           </p>
           <p style={{ margin: 0, textWrap: "pretty" }}>
-            Comecei a escrever para não esquecer. Um versículo aqui, uma resposta de oração ali. As anotações viraram cartas para amigas, as cartas viraram este blog. Nada aqui é teoria de púlpito: é o que tem me sustentado de verdade.
+            Foi então que entendi, pela graça de Deus, que podia usar essas palavras para alcançar mais corações. Hoje escrevo para compartilhar as entrelinhas de uma vida comum, na busca incessante pelo céu — na esperança de despertar em outras mulheres o mesmo amor imensurável e o mesmo desejo pelo eterno que sustentam os meus dias.
           </p>
           <h2 style={{ margin: "14px 0 0", fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 36, lineHeight: 1.2, color: "var(--color-ink)" }}>
             Para quem escrevo
           </h2>
           <p style={{ margin: 0, textWrap: "pretty" }}>
-            Para a mulher que ama a Deus e ainda assim se sente cansada. Para a que está esperando, a que está recomeçando e a que está firme e quer se aprofundar. Aqui não existe nível de fé mínimo para entrar.
+            Para mulheres e mães — católicas ou cristãs — que encontram no dia a dia as suas cruzes e, mesmo assim, não desistem. Para a que está esperando, a que está recomeçando e a que está firme e quer se aprofundar. Aqui não existe nível de fé mínimo para entrar.
           </p>
         </div>
         <div />
