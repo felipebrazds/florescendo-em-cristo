@@ -23,7 +23,7 @@ export default function SobrePage() {
             <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", color: "var(--color-accent)" }}>Bruna Figueiredo.</em>
           </h1>
           <p style={{ margin: 0, maxWidth: "46ch", fontSize: 18, lineHeight: 1.8, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
-            Esposa, mãe de 3 e escritora. Escrevo sobre a fé no dia comum — a louça, a espera e a graça que sustenta as duas.
+            Esposa, mãe de 3 e escritora. Escrevo sobre a fé no dia comum — entre o serviço do lar e a busca pela santificação, a graça que sustenta os dois.
           </p>
           <p style={{ margin: 0, maxWidth: "46ch", fontSize: 16, lineHeight: 1.8, color: "var(--color-muted)", textWrap: "pretty" }}>
             O Florescendo em Cristo nasceu de anotações no caderno da cozinha, em madrugadas de casa cheia e coração inquieto. Hoje é o lugar onde compartilho o que Deus tem me ensinado, sem pressa e sem fórmula.

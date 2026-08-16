@@ -48,7 +48,7 @@ export default async function HomePage() {
             </em>
           </h1>
           <p style={{ margin: 0, maxWidth: "44ch", fontSize: 17, lineHeight: 1.75, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
-            Devocionais, estudos e histórias reais para mulheres que caminham com Cristo no meio da rotina, da casa e das lutas silenciosas.
+            Estudos, testemunhos e histórias reais para mulheres que caminham com Cristo no meio da rotina, da casa e das lutas silenciosas.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 18, paddingTop: 6 }}>
             <Link
@@ -56,7 +56,7 @@ export default async function HomePage() {
               className="btn-dark"
               style={{ padding: "15px 30px", color: "var(--color-bg)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase" }}
             >
-              Ler o devocional de hoje
+              Ler o último escrito
             </Link>
             <a href="#escritos" style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", borderBottom: "1px solid var(--color-line-strong)", paddingBottom: 3 }}>
               Conhecer o blog

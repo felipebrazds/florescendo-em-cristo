@@ -47,7 +47,6 @@ export function SiteHeader() {
         }}
       >
         <Link href="/">Início</Link>
-        <Link href="#">Devocionais</Link>
         <Link href="#">Estudos</Link>
         <Link href="#">Testemunhos</Link>
         <Link href="#">Família</Link>

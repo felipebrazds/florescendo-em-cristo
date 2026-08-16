@@ -38,7 +38,6 @@ export function SiteFooter() {
         >
           Conteúdo
         </span>
-        <a href="#">Devocionais diários</a>
         <a href="#">Estudos bíblicos</a>
         <a href="#">Testemunhos</a>
         <a href="#">Maternidade e família</a>
