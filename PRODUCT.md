@@ -12,7 +12,7 @@ Christian women navigating faith in the middle of ordinary routine — home, fam
 
 ## Product Purpose
 
-**Florescendo em Cristo** ("Blossoming in Christ") is a devotional blog — "um lugar de descanso para a alma" (a place of rest for the soul). It publishes devotionals, bible studies (estudos), and testimonies (testemunhos) grounded in one author's lived faith rather than institutional teaching. Success means readers finding calm, honest spiritual encouragement amid daily overload, and subscribing to the weekly newsletter ("Carta semanal," sent Thursdays) to stay connected.
+**Florescendo em Cristo** ("Blossoming in Christ") is a devotional blog — "um lugar de descanso para a alma" (a place of rest for the soul). It publishes devotionals, bible studies (estudos), and testimonies (testemunhos) grounded in one author's lived faith rather than institutional teaching. Success means readers finding calm, honest spiritual encouragement amid daily overload, engaging directly through comments on posts, and reaching out through a prayer request when something in the writing touches a real need.
 
 ## Positioning
 
@@ -20,19 +20,20 @@ Word first, not opinion first — "tudo que escrevo passa pela Bíblia antes de 
 
 ## Operating Context
 
-- Public site: home (latest posts, categories, testimony spotlight, newsletter CTA), post detail pages, `/posts` (full archive), `/categorias/[slug]` (per-category archive), `/pedido-de-oracao`, "Sobre" (author bio, origin story, values, family life).
+- Public site: home (latest posts, categories, testimony spotlight, prayer-request CTA), post detail pages (each with a comment section), `/posts` (full archive), `/categorias/[slug]` (per-category archive), `/pedido-de-oracao`, "Sobre" (author bio, origin story, values, family life).
 - Content pillars: **Estudos** (bible studies), **Testemunhos** (testimonies), **Família** (family/maternity), and **Propósito** (purpose/calling) are the four confirmed active categories, each with its own archive page at `/categorias/<slug>` and linked from the main nav, footer, and home category grid. "Devocionais" was deliberately removed as a distinct filterable database category — devotional tone runs through all content rather than being its own browsable type.
-- Weekly cadence: a short devotional letter ("Carta semanal") goes out by email every Thursday; the signup form is wired to a `newsletter_subscribers` Supabase table (public insert, admin-only read) — email delivery itself (an ESP) is still not connected, so subscribers are captured but not yet emailed.
-- A "pedido de oração" (prayer request) page at `/pedido-de-oracao` is wired to a `prayer_requests` Supabase table (same public-insert/admin-read pattern) — Bruna reads requests directly in Supabase for now, no notification pipeline yet.
+- Newsletter signup was removed by explicit product decision (2026-08-17) — there is no email-capture feature on the site anymore. Do not reintroduce a newsletter CTA without a new explicit request; the `newsletter_subscribers` table still exists in Supabase (unused by the app) with its pre-removal rows, left untouched rather than dropped.
+- Comments: every published post has a comment section (name + comment body, both required, no moderation queue — a submitted comment appears publicly right away). Backed by a `comments` Supabase table, public insert and public read, admin-only delete.
+- Prayer requests: readers submit name, e-mail, and their request/situation, both inline at the bottom of Home, Sobre, and every post (`components/prayer-section.tsx`) and on a dedicated `/pedido-de-oracao` page — all three write to the same `prayer_requests` Supabase table (public insert, admin-only read). Bruna reads requests directly in Supabase for now; no email notification pipeline yet.
 - Admin/CMS: single-author area ("Área da autora") behind Supabase auth login, no public signup — accounts are provisioned directly rather than self-served. Bruna writes and edits posts with a Tiptap rich-text editor, setting category, status (draft/published), cover image, and reading time from `/admin`.
 - Language: Brazilian Portuguese throughout, including scripture quotations.
 
 ## Capabilities and Constraints
 
-- Built on Next.js 16 (App Router) + React 19, with Supabase (Postgres + Auth) as the backend. Posts, categories, profiles, `newsletter_subscribers`, and `prayer_requests` are Supabase tables (migrations `0001_init_blog_schema.sql`, `0002_newsletter_and_prayer_requests.sql`); an `is_admin` Postgres function backs row-level security for the author role.
+- Built on Next.js 16 (App Router) + React 19, with Supabase (Postgres + Auth) as the backend. Posts, categories, profiles, `prayer_requests`, and `comments` are the tables the app actually reads/writes (migrations `0001_init_blog_schema.sql`, `0002_newsletter_and_prayer_requests.sql`, `0003_comments_and_prayer_email.sql`); an unused `newsletter_subscribers` table remains from before the 2026-08-17 removal. An `is_admin` Postgres function backs row-level security for the author role.
 - Public read paths (home, post list, post detail, category archives) only query `status = "published"`; the admin dashboard reads all posts (draft + published) for the authenticated author, relying on Supabase RLS rather than app-level filtering to keep drafts private.
 - The homepage testimony quote ("Eu achava que estava seca…") and the "toda semana, uma história nova" claim are inherited placeholder copy from the original AI-prototype export, not yet backed by real testimony content. Future work must not extend or repeat this pattern as confirmed fact — replace it with real material (or mark it explicitly draft) before launch.
-- Newsletter subscription and prayer-request forms are live and functional (real Supabase writes, loading/success/error states) as of 2026-08-17; the remaining gap is an actual email-sending provider for the newsletter, not the capture step.
+- Comment and prayer-request forms are live and functional (real Supabase writes, loading/success/error states) as of 2026-08-17. Comments publish immediately with no moderation step — a deliberate simplicity trade-off, not an oversight; revisit if spam/abuse becomes real.
 - The "Instagram" and "E-mail" contact links in the footer are intentionally non-links ("em breve") — Bruna's real handle/address were never confirmed, so nothing was fabricated there.
 - A prior version of the site existed as a static HTML export (`_legacy-export/static-html-v1/`) from an AI site-builder prototype. The current codebase is a from-scratch Next.js + Supabase rebuild of that prototype's design and content, not a port of its code.
 
@@ -41,7 +42,6 @@ Word first, not opinion first — "tudo que escrevo passa pela Bíblia antes de 
 - Name: **Florescendo em Cristo**. Tagline: "Um lugar de descanso para a alma."
 - Author identity: **Bruna Figueiredo** — esposa, mãe de 3, escritora — is a real person and the site's sole voice. Bio, "Sobre" narrative, and post content are hers and must stay attributed to her, never to a team or generic brand persona.
 - Recurring scriptural motif: "o lírio entre os espinhos" (the lily among thorns), echoed in the homepage hero copy and hero photography.
-- Named recurring format: the weekly email is called "Carta semanal."
 
 ## Evidence on Hand
 

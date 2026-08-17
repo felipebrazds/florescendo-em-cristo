@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPostBySlug, getRelatedPosts } from "@/lib/posts";
+import { getPostBySlug, getRelatedPosts, getCommentsByPostId } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
-import { NewsletterSection } from "@/components/newsletter-section";
+import { PrayerSection } from "@/components/prayer-section";
 import { ShareButtons } from "@/components/share-buttons";
 import { PhotoPlaceholder } from "@/components/photo-placeholder";
+import { CommentsSection } from "@/components/comments-section";
 import { formatDateLong } from "@/lib/format";
 
 export const revalidate = 60;
@@ -32,7 +33,10 @@ export default async function PostPage({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = await getRelatedPosts(slug, 3);
+  const [related, comments] = await Promise.all([
+    getRelatedPosts(slug, 3),
+    getCommentsByPostId(post.id),
+  ]);
 
   return (
     <>
@@ -104,6 +108,8 @@ export default async function PostPage({
         </div>
       </article>
 
+      <CommentsSection postId={post.id} postSlug={post.slug} comments={comments} />
+
       {related.length > 0 ? (
         <section style={{ padding: "clamp(52px, 8vw, 72px) 6vw 84px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: 24, marginBottom: 40 }}>
@@ -128,7 +134,12 @@ export default async function PostPage({
         </div>
       )}
 
-      <NewsletterSection heading="Receba uma palavra toda quinta-feira" padding={80} headingSize={40} />
+      <PrayerSection
+        heading="Podemos orar com você?"
+        subtext="Se este texto tocou em algo, deixe seu pedido — a Bruna lê cada um."
+        padding={80}
+        headingSize={40}
+      />
     </>
   );
 }

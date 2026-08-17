@@ -39,8 +39,12 @@ export function PrayerRequestForm() {
   return (
     <form action={formAction} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        <label className="admin-label" htmlFor="name">Seu nome (opcional)</label>
-        <input className="admin-input" id="name" name="name" type="text" autoComplete="name" maxLength={120} />
+        <label className="admin-label" htmlFor="name">Seu nome</label>
+        <input className="admin-input" id="name" name="name" type="text" autoComplete="name" required maxLength={120} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <label className="admin-label" htmlFor="email">Seu e-mail</label>
+        <input className="admin-input" id="email" name="email" type="email" autoComplete="email" required />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         <label className="admin-label" htmlFor="message">Seu pedido</label>

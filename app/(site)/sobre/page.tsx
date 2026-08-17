@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { NewsletterSection } from "@/components/newsletter-section";
+import { PrayerSection } from "@/components/prayer-section";
 import { PhotoPlaceholder } from "@/components/photo-placeholder";
 
 export const metadata: Metadata = {
@@ -97,9 +97,9 @@ export default function SobrePage() {
         </div>
       </section>
 
-      <NewsletterSection
+      <PrayerSection
         heading="Vamos caminhar juntas?"
-        subtext="Toda quinta-feira envio uma palavra curta, um versículo para guardar e uma oração."
+        subtext="Se tiver algo pesando no seu coração agora, deixe aqui — eu leio cada pedido pessoalmente."
       />
     </>
   );

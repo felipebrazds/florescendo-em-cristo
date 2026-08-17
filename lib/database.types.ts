@@ -1,11 +1,9 @@
-// GERADO a partir do schema do Supabase (projeto "Florescendo em Cristo").
-// Para atualizar depois de uma migration nova, rode:
+// GERADO a partir do schema do Supabase (projeto "Florescendo em Cristo") via
+// mcp__claude_ai_Supabase__generate_typescript_types em 2026-08-17, depois da
+// migration `comments_and_prayer_email` (tabela `comments` nova; `prayer_requests`
+// ganhou a coluna `email`). Pra atualizar depois de uma migration nova, peça
+// pra IA regenerar via essa mesma ferramenta, ou rode:
 //   npx supabase gen types typescript --project-id nizxfpbvtglaonsnqrbf > lib/database.types.ts
-// (ou peça pra IA regenerar via `generate_typescript_types`.)
-//
-// `newsletter_subscribers` e `prayer_requests` foram adicionadas à mão em
-// 2026-08-17, junto com supabase/migrations/0002_newsletter_and_prayer_requests.sql
-// — regenere este arquivo de verdade depois de aplicar a migration.
 
 export type Json =
   | string
@@ -16,6 +14,8 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "14.15"
   }
@@ -48,6 +48,38 @@ export type Database = {
         }
         Relationships: []
       }
+      comments: {
+        Row: {
+          author_name: string
+          body: string
+          created_at: string
+          id: string
+          post_id: string
+        }
+        Insert: {
+          author_name: string
+          body: string
+          created_at?: string
+          id?: string
+          post_id: string
+        }
+        Update: {
+          author_name?: string
+          body?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
@@ -63,27 +95,6 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
-        }
-        Relationships: []
-      }
-      prayer_requests: {
-        Row: {
-          created_at: string
-          id: string
-          message: string
-          name: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          message: string
-          name?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          message?: string
-          name?: string | null
         }
         Relationships: []
       }
@@ -149,6 +160,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      prayer_requests: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          message: string
+          name: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message: string
+          name?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string
+          name?: string | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {

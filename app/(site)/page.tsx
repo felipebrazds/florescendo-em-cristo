@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPublishedPosts, getCategories } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
-import { NewsletterSection } from "@/components/newsletter-section";
+import { PrayerSection } from "@/components/prayer-section";
 
 export const revalidate = 60;
 
@@ -156,9 +156,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <NewsletterSection
-        heading="Uma palavra de cuidado, toda quinta-feira"
-        subtext="Uma palavra curta, um versículo para guardar e uma oração. Sem pressa, sem cobrança."
+      <PrayerSection
+        heading="Podemos orar com você?"
+        subtext="Conte o que estiver pesando. A Bruna lê cada pedido — sem pressa e sem julgamento."
       />
     </>
   );

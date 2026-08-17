@@ -110,3 +110,17 @@ export async function getPublishedPostsByCategoryId(categoryId: string) {
   if (error) throw error;
   return (data ?? []) as unknown as PostWithCategory[];
 }
+
+export type Comment = Tables<"comments">;
+
+export async function getCommentsByPostId(postId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("comments")
+    .select("id, author_name, body, created_at, post_id")
+    .eq("post_id", postId)
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+  return (data ?? []) as Comment[];
+}

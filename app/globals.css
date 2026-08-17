@@ -222,9 +222,9 @@ img {
 
 /* ==========================================================
    Responsividade — Home e componentes compartilhados (header,
-   footer, newsletter). Mobile-first: base = mobile, com breakpoints
-   por conteúdo em 640px (2 colunas) e 1024px (layout original de
-   desktop). Ver /impeccable adapt.
+   footer, pedido de oração). Mobile-first: base = mobile, com
+   breakpoints por conteúdo em 640px (2 colunas) e 1024px (layout
+   original de desktop). Ver /impeccable adapt.
    ========================================================== */
 
 .sr-only {
@@ -328,28 +328,16 @@ img {
   }
 }
 
-/* Newsletter ------------------------------------------------------- */
+/* Pedido de oração (seção embutida no rodapé das páginas) ------------ */
 
-.newsletter-form {
+.prayer-form {
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
-@media (min-width: 560px) {
-  .newsletter-form {
-    width: auto;
-    max-width: none;
-  }
-}
-
-.newsletter-input {
-  width: 100%;
-}
-
-@media (min-width: 560px) {
-  .newsletter-input {
-    min-width: 300px;
-    width: auto;
+@media (min-width: 640px) {
+  .prayer-form {
+    max-width: 560px;
   }
 }
 
