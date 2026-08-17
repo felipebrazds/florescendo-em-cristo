@@ -20,19 +20,20 @@ Word first, not opinion first — "tudo que escrevo passa pela Bíblia antes de 
 
 ## Operating Context
 
-- Public site: home (latest posts, categories, testimony spotlight, newsletter CTA), post detail pages, "Sobre" (author bio, origin story, values, family life), category browsing.
-- Content pillars: **Estudos** (bible studies) and **Testemunhos** (testimonies) are the confirmed active categories, with **Família** (family/maternity) an intended third pillar per nav and footer copy. "Devocionais" was deliberately removed as a distinct filterable database category — devotional tone runs through all content rather than being its own browsable type.
-- Weekly cadence: a short devotional letter ("Carta semanal") is intended to go out by email every Thursday; the on-page signup form is not yet wired to a delivery provider.
-- A "pedido de oração" (prayer request) link exists in the UI but is not yet wired to any destination.
+- Public site: home (latest posts, categories, testimony spotlight, newsletter CTA), post detail pages, `/posts` (full archive), `/categorias/[slug]` (per-category archive), `/pedido-de-oracao`, "Sobre" (author bio, origin story, values, family life).
+- Content pillars: **Estudos** (bible studies), **Testemunhos** (testimonies), **Família** (family/maternity), and **Propósito** (purpose/calling) are the four confirmed active categories, each with its own archive page at `/categorias/<slug>` and linked from the main nav, footer, and home category grid. "Devocionais" was deliberately removed as a distinct filterable database category — devotional tone runs through all content rather than being its own browsable type.
+- Weekly cadence: a short devotional letter ("Carta semanal") goes out by email every Thursday; the signup form is wired to a `newsletter_subscribers` Supabase table (public insert, admin-only read) — email delivery itself (an ESP) is still not connected, so subscribers are captured but not yet emailed.
+- A "pedido de oração" (prayer request) page at `/pedido-de-oracao` is wired to a `prayer_requests` Supabase table (same public-insert/admin-read pattern) — Bruna reads requests directly in Supabase for now, no notification pipeline yet.
 - Admin/CMS: single-author area ("Área da autora") behind Supabase auth login, no public signup — accounts are provisioned directly rather than self-served. Bruna writes and edits posts with a Tiptap rich-text editor, setting category, status (draft/published), cover image, and reading time from `/admin`.
 - Language: Brazilian Portuguese throughout, including scripture quotations.
 
 ## Capabilities and Constraints
 
-- Built on Next.js 16 (App Router) + React 19, with Supabase (Postgres + Auth) as the backend. Posts, categories, and profiles are Supabase tables; an `is_admin` Postgres function backs row-level security for the author role.
-- Public read paths (home, post list, post detail) only query `status = "published"`; the admin dashboard reads all posts (draft + published) for the authenticated author, relying on Supabase RLS rather than app-level filtering to keep drafts private.
+- Built on Next.js 16 (App Router) + React 19, with Supabase (Postgres + Auth) as the backend. Posts, categories, profiles, `newsletter_subscribers`, and `prayer_requests` are Supabase tables (migrations `0001_init_blog_schema.sql`, `0002_newsletter_and_prayer_requests.sql`); an `is_admin` Postgres function backs row-level security for the author role.
+- Public read paths (home, post list, post detail, category archives) only query `status = "published"`; the admin dashboard reads all posts (draft + published) for the authenticated author, relying on Supabase RLS rather than app-level filtering to keep drafts private.
 - The homepage testimony quote ("Eu achava que estava seca…") and the "toda semana, uma história nova" claim are inherited placeholder copy from the original AI-prototype export, not yet backed by real testimony content. Future work must not extend or repeat this pattern as confirmed fact — replace it with real material (or mark it explicitly draft) before launch.
-- Newsletter subscription and prayer-request forms are visually complete but not yet functionally wired to any provider or destination.
+- Newsletter subscription and prayer-request forms are live and functional (real Supabase writes, loading/success/error states) as of 2026-08-17; the remaining gap is an actual email-sending provider for the newsletter, not the capture step.
+- The "Instagram" and "E-mail" contact links in the footer are intentionally non-links ("em breve") — Bruna's real handle/address were never confirmed, so nothing was fabricated there.
 - A prior version of the site existed as a static HTML export (`_legacy-export/static-html-v1/`) from an AI site-builder prototype. The current codebase is a from-scratch Next.js + Supabase rebuild of that prototype's design and content, not a port of its code.
 
 ## Brand Commitments
@@ -45,7 +46,7 @@ Word first, not opinion first — "tudo que escrevo passa pela Bíblia antes de 
 ## Evidence on Hand
 
 - Real photography in use on the home page: `/public/images/lirios-1.jpg` (white lilies) and `/public/images/maos-biblia-1.png` (hands on a Bible).
-- No confirmed author portrait yet — the "Sobre" page still shows a photo placeholder for Bruna, plus a second placeholder for a family/coffee-table photo.
+- No confirmed author portrait yet — the "Sobre" page shows an on-brand illustrated placeholder (`components/photo-placeholder.tsx`: a line-drawn lily over a warm gradient, not the old debug-style striped box) for Bruna's portrait and for a family/coffee-table photo, until real photos are supplied.
 - No real testimonies, subscriber counts, press, or third-party proof exist yet. The homepage testimony block is inherited placeholder content (see Capabilities and Constraints) — do not treat it as real evidence to build on.
 
 ## Product Principles

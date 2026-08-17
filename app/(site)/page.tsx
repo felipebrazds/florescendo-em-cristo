@@ -25,9 +25,6 @@ export default async function HomePage() {
     <>
       <section className="hero-grid" style={{ alignItems: "stretch", borderBottom: "1px solid var(--color-line)" }}>
         <div className="hero-copy" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 26 }}>
-          <span style={{ fontFamily: "'Lora',serif", fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-accent-2)" }}>
-            Um lugar de descanso para a alma
-          </span>
           <h1
             style={{
               margin: 0,
@@ -51,7 +48,7 @@ export default async function HomePage() {
             </em>
           </h1>
           <p style={{ margin: 0, maxWidth: "44ch", fontSize: 17, lineHeight: 1.75, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
-            Estudos, testemunhos e histórias reais para mulheres que caminham com Cristo no meio da rotina, da casa e das lutas silenciosas.
+            <em style={{ fontStyle: "italic", color: "var(--color-accent)" }}>Um lugar de descanso para a alma</em> — estudos, testemunhos e histórias reais para mulheres que caminham com Cristo no meio da rotina, da casa e das lutas silenciosas.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 18, rowGap: 14, paddingTop: 6 }}>
             <Link
@@ -102,9 +99,9 @@ export default async function HomePage() {
           <h2 style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: "clamp(26px, 3vw + 20px, 38px)", color: "var(--color-ink)" }}>
             Escritos recentes
           </h2>
-          <a href="#" style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <Link href="/posts" style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Ver todos
-          </a>
+          </Link>
         </div>
         {posts.length > 0 ? (
           <div className="posts-grid">
@@ -113,7 +110,7 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p style={{ margin: 0, fontSize: 15, color: "var(--color-muted)" }}>
+          <p style={{ margin: 0, maxWidth: "48ch", fontSize: 15, color: "var(--color-muted)" }}>
             Ainda não há posts publicados. Assim que a Bruna publicar o primeiro, ele aparece aqui.
           </p>
         )}
@@ -121,15 +118,15 @@ export default async function HomePage() {
 
       <section className="categories-grid" style={categoriesGridStyle}>
         {categories.map((cat) => (
-          <a
+          <Link
             key={cat.id}
-            href="#"
+            href={`/categorias/${cat.slug}`}
             className="card-cat"
             style={{ display: "flex", flexDirection: "column", gap: 10, padding: "40px 26px", minHeight: 150 }}
           >
             <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "var(--color-ink)" }}>{cat.name}</span>
             <span style={{ fontSize: 13, lineHeight: 1.6, color: "var(--color-muted)" }}>{cat.description}</span>
-          </a>
+          </Link>
         ))}
       </section>
 
@@ -153,9 +150,9 @@ export default async function HomePage() {
           <p style={{ margin: 0, maxWidth: "48ch", fontSize: 16, lineHeight: 1.8, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
             Histórias de mulheres que atravessaram perdas, esperas e recomeços — e viram a fidelidade de Deus no meio disso. Toda semana, uma história nova.
           </p>
-          <a href="#" style={{ alignSelf: "flex-start", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", borderBottom: "1px solid var(--color-line-strong)", paddingBottom: 3 }}>
-            Ler o testemunho completo
-          </a>
+          <Link href="/categorias/testemunhos" style={{ alignSelf: "flex-start", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", borderBottom: "1px solid var(--color-line-strong)", paddingBottom: 3 }}>
+            Ver testemunhos
+          </Link>
         </div>
       </section>
 

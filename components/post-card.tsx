@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PostWithCategory } from "@/lib/posts";
 import { formatDateShort } from "@/lib/format";
+import { PhotoPlaceholder } from "@/components/photo-placeholder";
 
 /**
  * Card usado em "Escritos recentes" (Home) e "Continue lendo" (Post).
@@ -25,21 +26,18 @@ export function PostCard({
       href={`/posts/${post.slug}`}
       style={{ display: "flex", flexDirection: "column", gap: withExcerpt ? 16 : 14, color: "inherit" }}
     >
-      <div
-        className="photo-placeholder"
-        style={{ aspectRatio: "4/3", padding: 14 }}
-      >
+      <div className="photo-placeholder" style={{ aspectRatio: "4/3" }}>
         {post.cover_image_url ? (
-          <img src={post.cover_image_url} alt="" />
+          <img src={post.cover_image_url} alt={`Capa do post ${post.title}`} />
         ) : (
-          <span>foto — capa não enviada</span>
+          <PhotoPlaceholder caption="Capa a caminho" />
         )}
       </div>
       {post.category ? (
         <span
           style={{
-            fontSize: 10,
-            letterSpacing: "0.22em",
+            fontSize: 11,
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "var(--color-accent-2)",
           }}

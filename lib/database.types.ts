@@ -2,6 +2,10 @@
 // Para atualizar depois de uma migration nova, rode:
 //   npx supabase gen types typescript --project-id nizxfpbvtglaonsnqrbf > lib/database.types.ts
 // (ou peça pra IA regenerar via `generate_typescript_types`.)
+//
+// `newsletter_subscribers` e `prayer_requests` foram adicionadas à mão em
+// 2026-08-17, junto com supabase/migrations/0002_newsletter_and_prayer_requests.sql
+// — regenere este arquivo de verdade depois de aplicar a migration.
 
 export type Json =
   | string
@@ -41,6 +45,45 @@ export type Database = {
           name?: string
           slug?: string
           sort_order?: number
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      prayer_requests: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          name: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          name?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string | null
         }
         Relationships: []
       }

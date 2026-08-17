@@ -85,3 +85,28 @@ export async function getCategories() {
   if (error) throw error;
   return data ?? [];
 }
+
+export async function getCategoryBySlug(slug: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getPublishedPostsByCategoryId(categoryId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select(POST_CARD_FIELDS)
+    .eq("status", "published")
+    .eq("category_id", categoryId)
+    .order("published_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as unknown as PostWithCategory[];
+}

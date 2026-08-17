@@ -1,8 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
+const NAV_LINKS = [
+  { href: "/", label: "Início" },
+  { href: "/categorias/estudos", label: "Estudos" },
+  { href: "/categorias/testemunhos", label: "Testemunhos" },
+  { href: "/categorias/familia", label: "Família" },
+  { href: "/categorias/proposito", label: "Propósito" },
+  { href: "/sobre", label: "Sobre" },
+];
+
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header
+      className="site-header"
       style={{
         display: "flex",
         alignItems: "center",
@@ -36,21 +51,36 @@ export function SiteHeader() {
           em Cristo
         </span>
       </div>
+
+      <button
+        type="button"
+        className="nav-toggle"
+        aria-expanded={open}
+        aria-controls="site-nav"
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span className="nav-toggle-bar" />
+        <span className="nav-toggle-bar" />
+        <span className="nav-toggle-bar" />
+        <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
+      </button>
+
       <nav
+        id="site-nav"
+        className="site-nav"
+        data-open={open}
         style={{
-          display: "flex",
-          gap: 34,
           fontFamily: "'Lora',serif",
           fontSize: 12,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
         }}
       >
-        <Link href="/">Início</Link>
-        <Link href="#">Estudos</Link>
-        <Link href="#">Testemunhos</Link>
-        <Link href="#">Família</Link>
-        <Link href="/sobre">Sobre</Link>
+        {NAV_LINKS.map((link) => (
+          <Link key={link.label} href={link.href} onClick={() => setOpen(false)}>
+            {link.label}
+          </Link>
+        ))}
       </nav>
     </header>
   );

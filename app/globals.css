@@ -6,10 +6,14 @@
   --color-ink: #4a2e20;
   --color-ink-soft: #6b5140;
   --color-body: #54382a;
-  --color-muted: #8b7663;
-  --color-caption: #9a8570;
+  /* --color-muted, --color-caption e --color-accent-2 foram escurecidos em
+     relação ao protótipo original (mantendo a mesma família marrom/dourada)
+     pra bater 4,5:1 de contraste (WCAG AA) sobre --color-bg/--color-bg-alt —
+     os tons antigos ficavam entre 2,5:1 e 4,0:1. Ver /impeccable typeset. */
+  --color-muted: #766454;
+  --color-caption: #746454;
   --color-accent: #8b5e34;
-  --color-accent-2: #b89258;
+  --color-accent-2: #81663e;
   --color-gold: #e8b84e;
   --color-gold-hover: #f6d77a;
   --color-line: rgba(139, 94, 52, 0.14);
@@ -214,4 +218,318 @@ img {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent-2);
+}
+
+/* ==========================================================
+   Responsividade — Home e componentes compartilhados (header,
+   footer, newsletter). Mobile-first: base = mobile, com breakpoints
+   por conteúdo em 640px (2 colunas) e 1024px (layout original de
+   desktop). Ver /impeccable adapt.
+   ========================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Cabeçalho / menu -------------------------------------------- */
+
+.site-header {
+  position: relative;
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-line-strong);
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--color-ink);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.site-nav {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 24px 6vw 32px;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-line-strong);
+  z-index: 20;
+}
+
+.site-nav[data-open="true"] {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 34px;
+    position: static;
+    padding: 0;
+    border-bottom: none;
+    background: none;
+  }
+}
+
+/* Rodapé --------------------------------------------------------- */
+
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  padding: 48px 6vw;
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    padding: 64px 6vw;
+  }
+}
+
+/* Newsletter ------------------------------------------------------- */
+
+.newsletter-form {
+  width: 100%;
+  max-width: 440px;
+}
+
+@media (min-width: 560px) {
+  .newsletter-form {
+    width: auto;
+    max-width: none;
+  }
+}
+
+.newsletter-input {
+  width: 100%;
+}
+
+@media (min-width: 560px) {
+  .newsletter-input {
+    min-width: 300px;
+    width: auto;
+  }
+}
+
+/* Home: herói -------------------------------------------------------- */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 560px;
+  }
+}
+
+.hero-copy {
+  padding: 56px 6vw 40px;
+}
+
+@media (min-width: 1024px) {
+  .hero-copy {
+    padding: 88px 5vw 88px 6vw;
+  }
+}
+
+.hero-photo {
+  min-height: 320px;
+}
+
+@media (min-width: 1024px) {
+  .hero-photo {
+    min-height: 420px;
+  }
+}
+
+/* Home: versículo em destaque ------------------------------------------ */
+
+.verse-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.verse-bar-rule {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .verse-bar {
+    flex-direction: row;
+    gap: 22px;
+  }
+
+  .verse-bar-rule {
+    display: block;
+  }
+}
+
+/* Home: grade de posts e categorias ------------------------------------- */
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(var(--cat-cols, 3), 1fr);
+  }
+}
+
+/* Home: testemunho -------------------------------------------------------- */
+
+.testimony-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .testimony-grid {
+    grid-template-columns: 1fr 1.1fr;
+  }
+}
+
+.testimony-photo {
+  min-height: 300px;
+}
+
+@media (min-width: 1024px) {
+  .testimony-photo {
+    min-height: 440px;
+  }
+}
+
+.testimony-copy {
+  padding: 48px 6vw;
+}
+
+@media (min-width: 1024px) {
+  .testimony-copy {
+    padding: 80px 6vw;
+  }
+}
+
+/* Sobre / Post: coluna de conteúdo centralizada (só texto, sem sidebar) --- */
+
+.center-col-grid {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .center-col-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 660px) 1fr;
+  }
+}
+
+/* Post: corpo do artigo + sidebar de compartilhar ------------------------ */
+
+.post-body-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.post-body-grid .post-share-aside {
+  position: static;
+}
+
+/* Post: bio da autora ---------------------------------------------------- */
+
+.author-bio {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+@media (min-width: 560px) {
+  .author-bio {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-body-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 660px) 1fr;
+  }
+
+  .post-body-grid .post-share-aside {
+    position: sticky;
+    top: 40px;
+  }
 }

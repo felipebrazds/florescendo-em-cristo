@@ -1,11 +1,10 @@
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer
+      className="site-footer"
       style={{
-        display: "grid",
-        gridTemplateColumns: "1.4fr 1fr 1fr",
-        gap: 48,
-        padding: "64px 6vw",
         borderTop: "1px solid var(--color-line)",
       }}
     >
@@ -29,8 +28,8 @@ export function SiteFooter() {
       <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14 }}>
         <span
           style={{
-            fontSize: 10,
-            letterSpacing: "0.22em",
+            fontSize: 11,
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "var(--color-accent-2)",
             marginBottom: 6,
@@ -38,15 +37,16 @@ export function SiteFooter() {
         >
           Conteúdo
         </span>
-        <a href="#">Estudos bíblicos</a>
-        <a href="#">Testemunhos</a>
-        <a href="#">Maternidade e família</a>
+        <Link href="/categorias/estudos">Estudos bíblicos</Link>
+        <Link href="/categorias/testemunhos">Testemunhos</Link>
+        <Link href="/categorias/familia">Maternidade e família</Link>
+        <Link href="/categorias/proposito">Propósito</Link>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14 }}>
         <span
           style={{
-            fontSize: 10,
-            letterSpacing: "0.22em",
+            fontSize: 11,
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "var(--color-accent-2)",
             marginBottom: 6,
@@ -54,9 +54,9 @@ export function SiteFooter() {
         >
           Contato
         </span>
-        <a href="#">Instagram</a>
-        <a href="#">E-mail</a>
-        <a href="#">Pedido de oração</a>
+        <span style={{ color: "var(--color-caption)", cursor: "default" }}>Instagram — em breve</span>
+        <span style={{ color: "var(--color-caption)", cursor: "default" }}>E-mail — em breve</span>
+        <Link href="/pedido-de-oracao">Pedido de oração</Link>
       </div>
     </footer>
   );

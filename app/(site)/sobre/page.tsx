@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { NewsletterSection } from "@/components/newsletter-section";
+import { PhotoPlaceholder } from "@/components/photo-placeholder";
 
 export const metadata: Metadata = {
   title: "Sobre — Florescendo em Cristo",
@@ -14,10 +16,9 @@ const VALORES = [
 export default function SobrePage() {
   return (
     <>
-      <section style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", alignItems: "stretch", borderBottom: "1px solid var(--color-line)" }}>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 24, padding: "88px 5vw 88px 6vw" }}>
-          <span style={{ fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-accent-2)" }}>Sobre</span>
-          <h1 style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 58, lineHeight: 1.1, letterSpacing: "-0.01em", textWrap: "pretty" }}>
+      <section className="hero-grid" style={{ alignItems: "stretch", borderBottom: "1px solid var(--color-line)" }}>
+        <div className="hero-copy" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 24 }}>
+          <h1 style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: "clamp(34px, 3.4vw + 20px, 58px)", lineHeight: 1.1, letterSpacing: "-0.01em", textWrap: "pretty" }}>
             Prazer, eu sou a
             <br />
             <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", color: "var(--color-accent)" }}>Bruna Figueiredo.</em>
@@ -29,21 +30,24 @@ export default function SobrePage() {
             O Florescendo em Cristo nasceu de um diário de evolução espiritual — frases pequenas, escritas só para mim, que sem eu perceber começaram a tocar quem estava por perto. Hoje é o lugar onde compartilho o que Deus tem me ensinado, sem pressa e sem fórmula.
           </p>
         </div>
-        <div className="photo-placeholder" style={{ justifyContent: "center", padding: 24, minHeight: 520 }}>
-          <span>foto — retrato da Bruna (vertical)</span>
+        <div className="photo-placeholder hero-photo">
+          <PhotoPlaceholder caption="Retrato da Bruna a caminho" />
         </div>
       </section>
 
-      <section style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 22, padding: "44px 6vw", background: "var(--color-bg-alt)", borderBottom: "1px solid var(--color-line)" }}>
-        <span style={{ width: 56, height: 1, background: "var(--color-line-strong)" }} />
-        <p style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontSize: 26, fontStyle: "italic", color: "var(--color-ink-soft)", textAlign: "center", maxWidth: "60ch" }}>
+      <section
+        className="verse-bar"
+        style={{ justifyContent: "center", padding: "40px 6vw", background: "var(--color-bg-alt)", borderBottom: "1px solid var(--color-line)" }}
+      >
+        <span className="verse-bar-rule" style={{ width: 56, height: 1, background: "var(--color-line-strong)" }} />
+        <p style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(19px, 2.2vw + 14px, 26px)", fontStyle: "italic", color: "var(--color-ink-soft)", textAlign: "center", maxWidth: "60ch" }}>
           &ldquo;Eu sou a videira, vós as varas; quem permanece em mim, e eu nele, esse dá muito fruto.&rdquo;{" "}
           <span style={{ fontFamily: "'Lora',serif", fontStyle: "normal", fontSize: 12, letterSpacing: "0.16em", color: "var(--color-accent-2)" }}>JOÃO 15:5</span>
         </p>
-        <span style={{ width: 56, height: 1, background: "var(--color-line-strong)" }} />
+        <span className="verse-bar-rule" style={{ width: 56, height: 1, background: "var(--color-line-strong)" }} />
       </section>
 
-      <section style={{ display: "grid", gridTemplateColumns: "1fr minmax(0,660px) 1fr", gap: 48, padding: "84px 6vw" }}>
+      <section className="center-col-grid" style={{ gap: 48, padding: "clamp(56px, 8vw, 84px) 6vw" }}>
         <div />
         <div style={{ display: "flex", flexDirection: "column", gap: 28, fontSize: 18, lineHeight: 1.85, color: "var(--color-body)" }}>
           <h2 style={{ margin: 0, fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 36, lineHeight: 1.2, color: "var(--color-ink)" }}>
@@ -65,7 +69,7 @@ export default function SobrePage() {
         <div />
       </section>
 
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "var(--color-line-strong)", borderTop: "1px solid var(--color-line-strong)", borderBottom: "1px solid var(--color-line-strong)" }}>
+      <section className="categories-grid" style={{ gap: 1, background: "var(--color-line-strong)", borderTop: "1px solid var(--color-line-strong)", borderBottom: "1px solid var(--color-line-strong)" }}>
         {VALORES.map((v) => (
           <div key={v.num} style={{ display: "flex", flexDirection: "column", gap: 12, padding: "52px 40px", background: "var(--color-bg)" }}>
             <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 15, letterSpacing: "0.2em", color: "var(--color-accent-2)" }}>{v.num}</span>
@@ -75,21 +79,21 @@ export default function SobrePage() {
         ))}
       </section>
 
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", alignItems: "stretch" }}>
-        <div className="photo-placeholder" style={{ padding: 20, minHeight: 440 }}>
-          <span>foto — família ou mesa de café</span>
+      <section className="testimony-grid" style={{ alignItems: "stretch" }}>
+        <div className="photo-placeholder testimony-photo">
+          <PhotoPlaceholder caption="Foto de família a caminho" />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 22, padding: "80px 6vw" }}>
+        <div className="testimony-copy" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 22 }}>
           <span style={{ fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--color-accent-2)" }}>Fora do blog</span>
-          <p style={{ margin: 0, fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 28, lineHeight: 1.45, color: "var(--color-ink)", textWrap: "pretty" }}>
-            &ldquo;Três filhos, uma casa barulhenta e um caderno que me acompanha há dez anos.&rdquo;
+          <p style={{ margin: 0, fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "clamp(21px, 2.4vw + 15px, 28px)", lineHeight: 1.45, color: "var(--color-ink)", textWrap: "pretty" }}>
+            &ldquo;Três filhos, uma casa barulhenta e um caderno que me acompanha há alguns anos.&rdquo;
           </p>
           <p style={{ margin: 0, maxWidth: "48ch", fontSize: 16, lineHeight: 1.8, color: "var(--color-ink-soft)", textWrap: "pretty" }}>
             Gosto de café passado devagar, lírios brancos na mesa e conversas longas. Se você chegasse aqui em casa, eu te serviria um café e perguntaria como está o seu coração de verdade.
           </p>
-          <a href="#" className="btn-dark" style={{ alignSelf: "flex-start", padding: "15px 30px", color: "var(--color-bg)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <Link href="/pedido-de-oracao" className="btn-dark" style={{ alignSelf: "flex-start", padding: "15px 30px", color: "var(--color-bg)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Enviar um pedido de oração
-          </a>
+          </Link>
         </div>
       </section>
 
