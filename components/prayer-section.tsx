@@ -77,7 +77,7 @@ export function PrayerSection({
             color: "var(--color-bg-alt)",
           }}
         >
-          Recebido, com carinho — a Bruna vai ler.
+          Recebido, com carinho.
         </p>
       ) : (
         <form

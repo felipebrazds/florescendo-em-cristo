@@ -111,7 +111,7 @@ export default async function HomePage() {
           </div>
         ) : (
           <p style={{ margin: 0, maxWidth: "48ch", fontSize: 15, color: "var(--color-muted)" }}>
-            Ainda não há posts publicados. Assim que a Bruna publicar o primeiro, ele aparece aqui.
+            Ainda não há posts publicados. Assim que o primeiro for publicado, ele aparece aqui.
           </p>
         )}
       </section>
@@ -157,8 +157,7 @@ export default async function HomePage() {
       </section>
 
       <PrayerSection
-        heading="Podemos orar com você?"
-        subtext="Conte o que estiver pesando. A Bruna lê cada pedido — sem pressa e sem julgamento."
+        heading="Podemos orar por você?"
       />
     </>
   );

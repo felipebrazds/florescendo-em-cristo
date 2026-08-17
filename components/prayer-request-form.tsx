@@ -27,7 +27,7 @@ export function PrayerRequestForm() {
           Recebido, com carinho.
         </span>
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.7, color: "var(--color-ink-soft)" }}>
-          Seu pedido chegou até a Bruna. Obrigada por confiar isso a nós.
+          Seu pedido chegou aqui. Obrigada por confiar isso a nós.
         </p>
         <Link href="/" style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 6 }}>
           ← Voltar ao início
