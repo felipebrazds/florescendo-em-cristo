@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getRelatedPosts, getCommentsByPostId } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
@@ -89,13 +90,16 @@ export default async function PostPage({
         </div>
 
         <div className="author-bio" style={{ display: "flex", gap: 26, margin: "20px 6vw 0", padding: "34px 0", borderTop: "1px solid var(--color-line)" }}>
-          <div
+          <Image
+            src="/images/bruna-figueiredo.jpg"
+            alt="Foto de Bruna Figueiredo"
+            width={96}
+            height={96}
             style={{
-              width: 96,
-              height: 96,
               flex: "none",
               borderRadius: "50%",
-              background: "repeating-linear-gradient(135deg,#F1EADE 0px,#F1EADE 7px,#EBE1D2 7px,#EBE1D2 14px)",
+              objectFit: "cover",
+              background: "#F1EADE",
             }}
           />
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
